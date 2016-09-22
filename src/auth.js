@@ -22,7 +22,7 @@ export default {
       this.getAuthUser(context)
 
       if (redirect) {
-        Router.go(redirect)
+        Router.replace(redirect)
       }
     }, (response) => {
       Toast.create.negative(response.json().error)
@@ -38,7 +38,7 @@ export default {
       this.getAuthUser(context)
 
       if (redirect) {
-        Router.go(redirect)
+        Router.replace(redirect)
       }
     }, (response) => {
       Toast.create.negative(response.json().error)
@@ -48,7 +48,6 @@ export default {
   logout () {
     LocalStorage.clear()
     this.user.authenticated = false
-    window.location.replace('/')
   },
 
   checkAuth () {

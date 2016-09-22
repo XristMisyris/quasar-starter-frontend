@@ -2,35 +2,45 @@
   <quasar-layout>
     <div slot="header" class="toolbar">
       <quasar-toolbar-title :padding="1">
-        <button v-link="{path: '/'}">
+        <button v-go-back="'/'">
           <i>arrow_back</i>
         </button>
         Register
       </quasar-toolbar-title>
     </div>
-    <div class="layout-view">
-      <div class="list inner-delimiter bordered">
-        <div class="list-header">Register</div>
-        <div class="item floating-label">
+    <div class="layout-view layout-padding">
+      <div class="list">
+        <div class="item three-lines">
+          <i class="item-primary">face</i>
           <div class="item-content">
-            <input v-model="credentials.name" required>
-            <label>Name</label>
+            <div class="stacked-label">
+              <input v-model="credentials.name" required placeholder="Your name" class="full-width">
+              <label>Name</label>
+            </div>
           </div>
         </div>
-        <div class="item floating-label">
+        <hr>
+        <div class="item three-lines">
+          <i class="item-primary">mail</i>
           <div class="item-content">
-            <input v-model="credentials.email" required>
-            <label>Email</label>
+            <div class="stacked-label">
+              <input v-model="credentials.email" required placeholder="Your email" class="full-width">
+              <label>Email</label>
+            </div>
           </div>
         </div>
-        <div class="item floating-label">
+        <hr>
+        <div class="item three-lines">
+          <i class="item-primary">vpn_key</i>
           <div class="item-content">
-            <input v-model="credentials.password" type="password" required>
-            <label>Password</label>
+            <div class="stacked-label">
+              <input v-model="credentials.password" type="password" required placeholder="Your password" class="full-width">
+              <label>Password</label>
+            </div>
           </div>
         </div>
       </div>
-      <button class="primary" @click="submit()">Register</button>
+      <button class="primary full-width" @click="submit()">Register</button>
     </div>
   </quasar-layout>
 </template>

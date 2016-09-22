@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="list striped">
-      <div class="item" v-for="joke in jokes">{{ joke.joke }}</div>
+    <div class="list striped multiple-lines">
+      <div class="item" v-for="joke in jokes">
+        <div class="item-content">
+          <div>{{ joke.joke }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
-<style>
 
-</style>
 <script>
   import Auth from '../auth'
 

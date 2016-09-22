@@ -25,18 +25,22 @@ let routes = {
 
   // Index
   '/': {
+    name: 'index',
     component: load('index')
   },
 
   '/login': {
+    name: 'login',
     component: load('auth/login')
   },
 
   '/register': {
+    name: 'register',
     component: load('auth/register')
   },
 
   '/profile': {
+    name: 'profile',
     component: load('layouts/menu'),
     subRoutes: {
       '/': {component: load('profile')}
@@ -44,6 +48,7 @@ let routes = {
   },
 
   '/jokes': {
+    name: 'jokes',
     component: load('layouts/menu'),
     subRoutes: {
       '/': {component: load('jokes')}

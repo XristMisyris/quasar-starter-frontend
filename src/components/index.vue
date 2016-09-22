@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="layout-view layout-padding">
     <div class="branding">
       <div class="splash"></div>
       <div class="tagline">Quasar Starter</div>
@@ -7,23 +7,26 @@
       <p>Quasar App with Laravel Backend API</p>
     </div>
     <div class="row no-gutter">
-      <button class="primary button-block" v-link="'login'">
+      <button class="primary full-width" v-link="{name: 'login'}">
         Login
       </button>
     </div>
     <br>
     <div class="row no-gutter">
-      <button class="primary button-block" v-link="'register'">
+      <button class="primary full-width" v-link="{name: 'register'}">
         Register
       </button>
     </div>
   </div>
 </template>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
+  @import "../themes/app.variables.styl"
 
-  .button-block{
-    width 100%
+  @media only screen and (min-width: 601px){
+    .layout-padding{
+      margin 0 auto
+    }
   }
 
   .splash {
@@ -42,18 +45,18 @@
   }
 
   .branding .tagline {
-    color #027be3
+    color $primary
     font-size 35px
     line-height 30px
   }
 
   .branding p {
-    color #027be3
+    color $primary
     font-size 18px
   }
   .branding hr {
     max-width 50px
-    border-color #027be3
+    border-color $primary
     border-width 2px
     border-style solid
     margin 30px auto

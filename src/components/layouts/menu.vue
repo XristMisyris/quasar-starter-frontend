@@ -5,7 +5,7 @@
         <i>menu</i>
       </button>
       <quasar-toolbar-title :padding="1">
-        Quasar Layout
+        Quasar Starter
       </quasar-toolbar-title>
       <button class="right-drawer-opener">
         <i>assignment</i>
@@ -19,14 +19,15 @@
         </quasar-toolbar-title>
       </div>
 
-      <div class="list platform-delimiter">
-        <quasar-drawer-link v-link="{path: '/jokes', exact: true}" icon="view_quilt">
+      <div class="list no-border platform-delimiter">
+        <quasar-drawer-link v-link="{name: 'jokes', exact: true, replace: true}" icon="view_quilt">
           Jokes
         </quasar-drawer-link>
-        <quasar-drawer-link v-link="{path: '/profile', exact: true}" icon="account_circle">
+        <quasar-drawer-link v-link="{name: 'profile', exact: true, replace: true}" icon="account_circle">
           Profile
         </quasar-drawer-link>
-        <quasar-drawer-link @click="logout()" icon="exit_to_app">
+        <hr>
+        <quasar-drawer-link v-go-back="'/'" @click="logout()" icon="exit_to_app">
           Logout
         </quasar-drawer-link>
       </div>
