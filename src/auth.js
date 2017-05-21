@@ -2,7 +2,7 @@ import Router from './router'
 import { Toast, LocalStorage, Loading } from 'quasar'
 import axios from 'axios'
 
-const API_URL = 'http://fotovoltaikaapi.dev/api/'
+const API_URL = 'http://quasar-back.dev/api/v1/'
 const LOGIN_URL = API_URL + 'authenticate'
 const SIGNUP_URL = API_URL + 'register'
 const USER_URL = API_URL + 'authenticate/user'
@@ -27,7 +27,7 @@ export default {
         }
       })
       .catch(function (error) {
-        console.log(error)
+        Toast.create.negative(error.response.data.message)
       })
   },
 
@@ -45,7 +45,7 @@ export default {
         }
       })
       .catch(function (error) {
-        console.log(error)
+        Toast.create.negative(error.response.data.message)
       })
   },
 
@@ -75,10 +75,10 @@ export default {
       // Store refreshed token
       axios.defaults.headers.common['Authorization'] = 'Bearer: ' + response.data.token
       LocalStorage.set('id_token', response.data.token)
-      Toast.create.positive('Επιτυχής σύνδεση!!')
+      Toast.create.positive('Successful login!!')
       that.getAuthUser()
     }, function () {
-      Toast.create.negative('Αποτυχία σύνδεσης !!')
+      Toast.create.negative('Something went wrong with your login!!')
       that.logout()
     })
   },

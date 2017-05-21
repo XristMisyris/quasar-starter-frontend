@@ -19,18 +19,23 @@ auth.checkAuth(this)
 
 // Loading indicator for ajax request + refresh token if token is expired
 axios.interceptors.request.use(function (config) {
-  console.log('Show Loading')
   Quasar.Loading.show()
   return config
+}, function (error) {
+  Quasar.Loading.hide()
+  return Promise.reject(error)
 })
+
 axios.interceptors.response.use(function (response) {
-  console.log('Hide Loading')
   Quasar.Loading.hide()
   if (response.status === 401 && response.body.error === 'token_expired') {
     auth.refreshToken()
     auth.showLoading()
   }
   return response
+}, function (error) {
+  Quasar.Loading.hide()
+  return Promise.reject(error)
 })
 
 Quasar.start(() => {
