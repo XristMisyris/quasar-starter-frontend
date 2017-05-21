@@ -26,7 +26,8 @@ export default new VueRouter({
     { path: '/', component: load('index/index'), beforeEnter: checkAuth }, // Default
     { path: '/login', component: load('auth/login') }, // Login
     { path: '/register', component: load('auth/register') }, // Register
-    { path: '/profile', component: load('profile/profile'), beforeEnter: checkAuth } // Profile
+    { path: '/profile', component: load('profile/profile'), beforeEnter: checkAuth }, // Profile
+    { path: '/jokes', component: load('jokes/jokes'), beforeEnter: checkAuth } // Profile
   ]
 })
 

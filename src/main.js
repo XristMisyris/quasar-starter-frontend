@@ -14,10 +14,10 @@ import axios from 'axios'
 
 Vue.use(Quasar) // Install Quasar Framework
 
+axios.defaults.baseURL = 'http://quasar-back.dev/api/v1'
+
 // Check if user is logged in or not + refresh token
 auth.checkAuth(this)
-
-axios.defaults.baseURL = 'http://quasar-back.dev/api/v1'
 
 // Loading indicator for ajax request + refresh token if token is expired
 axios.interceptors.request.use(function (config) {

@@ -8,6 +8,10 @@
 
     <div class="list no-border platform-delimiter">
       <div class="list item-inset-delimiter">
+        <q-drawer-link icon="account_circle" to="/jokes">
+          Jokes
+        </q-drawer-link>
+        <hr>
         <q-drawer-link icon="account_circle" to="/profile">
           Profile
         </q-drawer-link>
