@@ -1,7 +1,7 @@
 var
-  shell = require('shelljs')
-  ,path = require('path')
-  ,config = require('../config')
+  shell = require('shelljs'),
+  path = require('path')
 
-shell.rm('-rf', path.resolve(__dirname, '../dist'))
+shell.rm('-rf', path.resolve(__dirname, '../dist/*'))
+shell.rm('-rf', path.resolve(__dirname, '../dist/.*'))
 console.log(' Cleaned build artifacts.\n')

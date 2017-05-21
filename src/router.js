@@ -1,62 +1,44 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import auth from 'auth'
+import { LocalStorage } from 'quasar'
+
 Vue.use(VueRouter)
 
-/*
-  Avoid lazy loading while in dev mode
-  to benefit from HMR
- */
-function load (name) {
-  if (process.env.NODE_ENV === 'development') {
-    return require('components/' + name + '.vue')
+function load (component) {
+  return () => System.import(`components/${component}.vue`)
+}
+
+export default new VueRouter({
+  /*
+   * NOTE! VueRouter "history" mode DOESN'T works for Cordova builds,
+   * it is only to be used only for websites.
+   *
+   * If you decide to go with "history" mode, please also open /config/index.js
+   * and set "build.publicPath" to something other than an empty string.
+   * Example: '/' instead of current ''
+   *
+   * If switching back to default "hash" mode, don't forget to set the
+   * build publicPath back to '' so Cordova builds work again.
+   */
+
+  routes: [
+    { path: '/', component: load('index/index'), beforeEnter: checkAuth }, // Default
+    { path: '/login', component: load('auth/login') }, // Login
+    { path: '/register', component: load('auth/register') }, // Register
+    { path: '/profile', component: load('profile/profile'), beforeEnter: checkAuth } // Profile
+  ]
+})
+
+function checkAuth (to, from, next) {
+  if (to.path === '/' && auth.user.authenticated) {
+    next('/profile')
+  }
+  else if (!LocalStorage.get.item('id_token') && to.path !== '/') {
+    console.log('not logged')
+    next('/login')
   }
   else {
-    return (resolve) => {
-      require('bundle?lazy!components/' + name + '.vue')(resolve)
-    }
+    next()
   }
 }
-
-let routes = {
-  // Not found
-  '*': {
-    component: load('error404')
-  },
-
-  // Index
-  '/': {
-    name: 'index',
-    component: load('index')
-  },
-
-  '/login': {
-    name: 'login',
-    component: load('auth/login')
-  },
-
-  '/register': {
-    name: 'register',
-    component: load('auth/register')
-  },
-
-  '/profile': {
-    name: 'profile',
-    component: load('layouts/menu'),
-    subRoutes: {
-      '/': {component: load('profile')}
-    }
-  },
-
-  '/jokes': {
-    name: 'jokes',
-    component: load('layouts/menu'),
-    subRoutes: {
-      '/': {component: load('jokes')}
-    }
-  }
-}
-
-let Router = new VueRouter()
-Router.map(routes)
-
-export default Router

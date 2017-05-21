@@ -1,41 +1,56 @@
 var
   path = require('path'),
   config = require('../config'),
-  utils = require('./utils'),
-  platform = require('./platform'),
+  cssUtils = require('./css-utils'),
   webpack = require('webpack'),
   merge = require('webpack-merge'),
   baseWebpackConfig = require('./webpack.base.conf'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  env = process.env.NODE_ENV === 'testing'
-    ? require('../config/test.env')
-    : config.build.env
+  OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
-var webpackConfig = merge(baseWebpackConfig, {
+module.exports = merge(baseWebpackConfig, {
   module: {
-    loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true, postcss: true })
-  },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
-  vue: {
-    loaders: utils.cssLoaders({
+    rules: cssUtils.styleRules({
       sourceMap: config.build.productionSourceMap,
-      extract: true
+      extract: true,
+      postcss: true
     })
   },
+  devtool: config.build.productionSourceMap ? '#source-map' : false,
   plugins: [
-    // http://vuejs.github.io/vue-loader/workflow/production.html
-    new webpack.DefinePlugin({
-      'process.env': env,
-      '__THEME': '"' + platform.theme + '"'
-    }),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: config.build.productionSourceMap,
+      minimize: true,
       compress: {
         warnings: false
       }
     }),
+    // Compress extracted CSS. We are using this plugin so that possible
+    // duplicated CSS from different components can be deduped.
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+        safe: true
+      }
+    }),
     // extract css into its own file
-    new ExtractTextPlugin('[name].[contenthash].css'),
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash].css'
+    }),
+    new HtmlWebpackPlugin({
+      filename: config.build.index,
+      template: 'src/index.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
+    }),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -55,42 +70,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-    }),
-    new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-      ? 'index.html'
-      : config.build.index,
-      template: 'src/index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
-      },
-      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
     })
   ]
 })
-
-if (config.build.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
-
-  webpackConfig.plugins.push(
-    new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: new RegExp(
-        '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
-        ')$'
-      ),
-      threshold: 10240,
-      minRatio: 0.8
-    })
-  )
-}
-
-module.exports = webpackConfig

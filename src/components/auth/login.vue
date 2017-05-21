@@ -1,12 +1,12 @@
 <template>
-  <quasar-layout>
+  <div>
     <div slot="header" class="toolbar">
-      <quasar-toolbar-title :padding="1">
-        <button v-go-back="'/'">
-          <i>arrow_back</i>
-        </button>
+      <button v-go-back="'/'">
+        <i>arrow_back</i>
+      </button>
+      <q-toolbar-title :padding="1">
         Login
-      </quasar-toolbar-title>
+      </q-toolbar-title>
     </div>
     <div class="layout-view layout-padding">
       <div class="list">
@@ -32,7 +32,7 @@
       </div>
       <button class="primary full-width" @click="submit()">Login</button>
     </div>
-  </quasar-layout>
+  </div>
 </template>
 
 <script>
@@ -50,11 +50,7 @@
 
     methods: {
       submit () {
-        var credentials = {
-          email: this.credentials.email,
-          password: this.credentials.password
-        }
-        auth.login(this, credentials, 'jokes')
+        auth.login(this.credentials, 'profile')
       }
     }
   }

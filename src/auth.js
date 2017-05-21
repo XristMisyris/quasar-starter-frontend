@@ -1,8 +1,8 @@
-import Vue from 'vue'
 import Router from './router'
-import { Toast, LocalStorage } from 'quasar'
+import { Toast, LocalStorage, Loading } from 'quasar'
+import axios from 'axios'
 
-const API_URL = 'http://localhost:8000/api/v1/'
+const API_URL = 'http://fotovoltaikaapi.dev/api/'
 const LOGIN_URL = API_URL + 'authenticate'
 const SIGNUP_URL = API_URL + 'register'
 const USER_URL = API_URL + 'authenticate/user'
@@ -13,61 +13,90 @@ export default {
     authenticated: false
   },
 
-  login (context, creds, redirect) {
-    context.$http.post(LOGIN_URL, creds).then((response) => {
-      LocalStorage.set('id_token', response.json().token)
+  login (creds, redirect) {
+    axios.post(LOGIN_URL, creds)
+      .then((response) => {
+        LocalStorage.set('id_token', response.data.token)
 
-      this.user.authenticated = true
-      Vue.http.headers.common['Authorization'] = 'Bearer ' + LocalStorage.get.item('id_token')
-      this.getAuthUser(context)
+        this.user.authenticated = true
+        axios.defaults.headers.common['Authorization'] = 'Bearer: ' + LocalStorage.get.item('id_token')
+        this.getAuthUser()
 
-      if (redirect) {
-        Router.replace(redirect)
-      }
-    }, (response) => {
-      Toast.create.negative(response.json().error)
-    })
+        if (redirect) {
+          setTimeout(() => Router.replace(redirect), 700)
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   },
 
-  signup (context, creds, redirect) {
-    context.$http.post(SIGNUP_URL, creds).then((response) => {
-      LocalStorage.set('id_token', response.json().token)
+  signup (creds, redirect) {
+    axios.post(SIGNUP_URL, creds)
+      .then((response) => {
+        LocalStorage.set('id_token', response.data.token)
 
-      this.user.authenticated = true
-      Vue.http.headers.common['Authorization'] = 'Bearer ' + LocalStorage.get.item('id_token')
-      this.getAuthUser(context)
+        this.user.authenticated = true
+        axios.defaults.headers.common['Authorization'] = 'Bearer: ' + LocalStorage.get.item('id_token')
+        this.getAuthUser()
 
-      if (redirect) {
-        Router.replace(redirect)
-      }
-    }, (response) => {
-      Toast.create.negative(response.json().error)
-    })
+        if (redirect) {
+          setTimeout(() => Router.replace(redirect), 700)
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   },
 
   logout () {
     LocalStorage.clear()
     this.user.authenticated = false
+    Router.replace('/')
   },
 
   checkAuth () {
-    var jwt = LocalStorage.get.item('id_token')
+    let jwt = LocalStorage.get.item('id_token')
 
     if (jwt) {
       this.user.authenticated = true
-      Vue.http.headers.common['Authorization'] = 'Bearer ' + jwt
+      axios.defaults.headers.common['Authorization'] = 'Bearer: ' + LocalStorage.get.item('id_token')
+      this.refreshToken()
     }
     else {
       this.user.authenticated = false
     }
   },
 
-  getAuthUser (context) {
-    context.$http.get(USER_URL).then((response) => {
-      console.log(response.json())
-      LocalStorage.set('user', response.json())
-    }, (response) => {
+  refreshToken () {
+    var that = this
+
+    axios.post(API_URL + 'refresh-token').then(function (response) {
+      // Store refreshed token
+      axios.defaults.headers.common['Authorization'] = 'Bearer: ' + response.data.token
+      LocalStorage.set('id_token', response.data.token)
+      Toast.create.positive('Επιτυχής σύνδεση!!')
+      that.getAuthUser()
+    }, function () {
+      Toast.create.negative('Αποτυχία σύνδεσης !!')
+      that.logout()
+    })
+  },
+
+  getAuthUser () {
+    axios.get(USER_URL).then((response) => {
+      LocalStorage.set('user', response.data)
+    }, () => {
       Toast.create.negative('Something went wrong!')
     })
+  },
+
+  showLoading () {
+    Loading.show({
+      message: 'Αποσυνδεθήκατε για λόγους ασφαλίας.\n Επανασύνδεση....'
+    })
+    setTimeout(() => {
+      Loading.hide()
+    }, 2000)
   }
 }

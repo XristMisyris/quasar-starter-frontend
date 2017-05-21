@@ -7,21 +7,21 @@
       <p>Quasar App with Laravel Backend API</p>
     </div>
     <div class="row no-gutter">
-      <button class="primary full-width" v-link="{name: 'login'}">
+      <button class="primary full-width" @click="goTo('login')">
         Login
       </button>
     </div>
     <br>
     <div class="row no-gutter">
-      <button class="primary full-width" v-link="{name: 'register'}">
+      <button class="primary full-width" @click="goTo('register')">
         Register
       </button>
     </div>
   </div>
 </template>
 
-<style lang="stylus">
-  @import "../themes/app.variables.styl"
+<style lang="stylus" scoped>
+  @import "../../themes/app.variables.styl"
 
   @media only screen and (min-width: 601px){
     .layout-padding{
@@ -30,7 +30,7 @@
   }
 
   .splash {
-    background url(../statics/quasar-logo.png) no-repeat center center
+    background url(../../statics/quasar-logo.png) no-repeat center center
     margin 0 auto
     height 300px
     width 300px
@@ -64,11 +64,13 @@
 </style>
 
 <script>
-export default {
-  data () {
-    return {
+  import router from '../../router'
 
+  export default {
+    methods: {
+      goTo (link) {
+        router.push(link)
+      }
     }
   }
-}
 </script>

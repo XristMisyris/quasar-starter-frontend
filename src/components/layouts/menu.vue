@@ -1,57 +1,27 @@
 <template>
-  <quasar-layout>
-    <div slot="header" class="toolbar">
-      <button class="left-drawer-opener">
-        <i>menu</i>
-      </button>
-      <quasar-toolbar-title :padding="1">
-        Quasar Starter
-      </quasar-toolbar-title>
-      <button class="right-drawer-opener">
-        <i>assignment</i>
-      </button>
+  <q-drawer ref="leftDrawer" :swipe-only="true">
+    <div class="toolbar light">
+      <q-toolbar-title :padding="1">
+        Quasar Frontend
+      </q-toolbar-title>
     </div>
 
-    <quasar-drawer>
-      <div class="toolbar light">
-        <quasar-toolbar-title :padding="1">
-          Menu
-        </quasar-toolbar-title>
-      </div>
-
-      <div class="list no-border platform-delimiter">
-        <quasar-drawer-link v-link="{name: 'jokes', exact: true, replace: true}" icon="view_quilt">
-          Jokes
-        </quasar-drawer-link>
-        <quasar-drawer-link v-link="{name: 'profile', exact: true, replace: true}" icon="account_circle">
+    <div class="list no-border platform-delimiter">
+      <div class="list item-inset-delimiter">
+        <q-drawer-link icon="account_circle" to="/profile">
           Profile
-        </quasar-drawer-link>
-        <hr>
-        <quasar-drawer-link v-go-back="'/'" @click="logout()" icon="exit_to_app">
-          Logout
-        </quasar-drawer-link>
+        </q-drawer-link>
+        <div class="item" v-go-back="'/'" @click="logout()">
+          <i class="item-primary">exit_to_app</i>
+          <div class="item-content">Logout</div>
+        </div>
       </div>
-    </quasar-drawer>
-
-    <router-view class="layout-view"></router-view>
-
-    <quasar-drawer right-side swipe-only>
-      <div class="toolbar light">
-        <quasar-toolbar-title :padding="1">
-          Right-side Drawer
-        </quasar-toolbar-title>
-      </div>
-
-      <p style="padding: 25px;" class="text-grey-7">
-        This is yet another Drawer that does not gets displayed alongside content on
-        bigger screens.
-      </p>
-    </quasar-drawer>
-  </quasar-layout>
+    </div>
+  </q-drawer>
 </template>
-<style>
 
-</style>
+<style></style>
+
 <script>
   import Auth from '../../auth'
 

@@ -2,83 +2,114 @@ var
   path = require('path'),
   webpack = require('webpack'),
   config = require('../config'),
-  utils = require('./utils'),
+  cssUtils = require('./css-utils'),
+  env = require('./env-utils'),
+  merge = require('webpack-merge'),
   projectRoot = path.resolve(__dirname, '../'),
-  autoprefixer = require('autoprefixer')
+  ProgressBarPlugin = require('progress-bar-webpack-plugin'),
+  useCssSourceMap =
+    (env.dev && config.dev.cssSourceMap) ||
+    (env.prod && config.build.productionSourceMap)
+
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
   entry: {
-    app: './src/app.js'
+    app: './src/main.js'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.publicPath : config.dev.publicPath,
+    publicPath: config[env.prod ? 'build' : 'dev'].publicPath,
     filename: 'js/[name].js',
     chunkFilename: 'js/[id].[chunkhash].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],
-    alias: {
-      'quasar': path.resolve(__dirname, '../node_modules/quasar-framework/'),
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
-    }
-  },
-  resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
+    extensions: ['.js', '.vue', '.json'],
+    modules: [
+      resolve('src'),
+      resolve('node_modules')
+    ],
+    alias: config.aliases
   },
   module: {
-    preLoaders: [
-      {
+    rules: [
+      { // eslint
+        enforce: 'pre',
         test: /\.(vue|js)$/,
-        loader: 'eslint',
+        loader: 'eslint-loader',
         include: projectRoot,
-        exclude: /node_modules/
-      }
-    ],
-    loaders: [
-      {
-        test: /\.vue$/,
-        loader: 'vue'
+        exclude: /node_modules/,
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: projectRoot,
         exclude: /node_modules/
       },
       {
-        test: /\.html$/,
-        loader: 'vue-html'
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          postcss: cssUtils.postcss,
+          loaders: merge({js: 'babel-loader'}, cssUtils.styleLoaders({
+            sourceMap: useCssSourceMap,
+            extract: env.prod
+          }))
+        }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url',
-        query: {
+        loader: 'url-loader',
+        options: {
           limit: 10000,
           name: 'img/[name].[hash:7].[ext]'
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url',
-        query: {
+        loader: 'url-loader',
+        options: {
           limit: 10000,
           name: 'fonts/[name].[hash:7].[ext]'
         }
       }
     ]
   },
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
-  },
-  postcss: function () {
-    return [autoprefixer]
-  },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin()
-  ]
+    /*
+      Take note!
+      Uncomment if you wish to load only one Moment locale:
+
+      new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
+    */
+
+    new webpack.DefinePlugin({
+      'process.env': config[env.prod ? 'build' : 'dev'].env,
+      'DEV': env.dev,
+      'PROD': env.prod,
+      '__THEME': '"' + env.platform.theme + '"'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: env.prod,
+      options: {
+        context: path.resolve(__dirname, '../src'),
+        postcss: cssUtils.postcss
+      }
+    }),
+    new ProgressBarPlugin({
+      format: config.progressFormat
+    })
+  ],
+  performance: {
+    hints: false
+  }
 }

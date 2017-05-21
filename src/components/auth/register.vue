@@ -1,12 +1,12 @@
 <template>
-  <quasar-layout>
+  <div>
     <div slot="header" class="toolbar">
-      <quasar-toolbar-title :padding="1">
-        <button v-go-back="'/'">
-          <i>arrow_back</i>
-        </button>
+      <button v-go-back="'/'">
+        <i>arrow_back</i>
+      </button>
+      <q-toolbar-title :padding="1">
         Register
-      </quasar-toolbar-title>
+      </q-toolbar-title>
     </div>
     <div class="layout-view layout-padding">
       <div class="list">
@@ -24,7 +24,7 @@
           <i class="item-primary">mail</i>
           <div class="item-content">
             <div class="stacked-label">
-              <input v-model="credentials.email" required placeholder="Your email" class="full-width">
+              <input v-model="credentials.email" required placeholder="Your email address" class="full-width">
               <label>Email</label>
             </div>
           </div>
@@ -42,7 +42,7 @@
       </div>
       <button class="primary full-width" @click="submit()">Register</button>
     </div>
-  </quasar-layout>
+  </div>
 </template>
 
 <script>
@@ -61,12 +61,7 @@
 
     methods: {
       submit () {
-        var credentials = {
-          name: this.credentials.name,
-          email: this.credentials.email,
-          password: this.credentials.password
-        }
-        auth.signup(this, credentials, 'jokes')
+        auth.signup(this.credentials, 'profile')
       }
     }
   }
