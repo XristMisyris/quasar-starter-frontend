@@ -2,46 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="983f9bce-abff-4042-bf84-09047b51bd84" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/css-utils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/env-utils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/platform.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/utils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/test.env.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/jokes.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/e2e/custom-assertions/elementCount.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/e2e/nightwatch.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/e2e/runner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/e2e/specs/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/unit/.eslintrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/unit/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/unit/karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/unit/specs/404.spec.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/unit/specs/index.spec.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/index.vue" afterPath="$PROJECT_DIR$/src/components/index/index.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/profile.vue" afterPath="$PROJECT_DIR$/src/components/profile/profile.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.babelrc" afterPath="$PROJECT_DIR$/.babelrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.editorconfig" afterPath="$PROJECT_DIR$/.editorconfig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.eslintignore" afterPath="$PROJECT_DIR$/.eslintignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.eslintrc.js" afterPath="$PROJECT_DIR$/.eslintrc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.stylintrc" afterPath="$PROJECT_DIR$/.stylintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/script.build.js" afterPath="$PROJECT_DIR$/build/script.build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/script.clean.js" afterPath="$PROJECT_DIR$/build/script.clean.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/script.dev.js" afterPath="$PROJECT_DIR$/build/script.dev.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.base.conf.js" afterPath="$PROJECT_DIR$/build/webpack.base.conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.dev.conf.js" afterPath="$PROJECT_DIR$/build/webpack.dev.conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.prod.conf.js" afterPath="$PROJECT_DIR$/build/webpack.prod.conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/index.js" afterPath="$PROJECT_DIR$/config/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/auth.js" afterPath="$PROJECT_DIR$/src/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/login.vue" afterPath="$PROJECT_DIR$/src/components/auth/login.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/register.vue" afterPath="$PROJECT_DIR$/src/components/auth/register.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/layouts/menu.vue" afterPath="$PROJECT_DIR$/src/components/layouts/menu.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router.js" afterPath="$PROJECT_DIR$/src/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="register.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/auth/register.vue">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="28">
+              <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -95,6 +57,7 @@
         <option value="$PROJECT_DIR$/src/components/layouts/menu.vue" />
         <option value="$PROJECT_DIR$/src/components/auth/login.vue" />
         <option value="$PROJECT_DIR$/src/components/auth/register.vue" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -375,15 +338,16 @@
       <option name="presentableId" value="Default" />
       <updated>1495359183041</updated>
       <workItem from="1495359184528" duration="156000" />
-      <workItem from="1495359385911" duration="2696000" />
+      <workItem from="1495359385911" duration="2873000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2852000" />
+    <option name="totallyTimeSpent" value="3029000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -392,7 +356,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -427,13 +391,6 @@
             <marker date="1495360101695" expanded="true" signature="309:576" ph="{&quot;axios&quot;: &quot;^0.15.3&quot;...}" />
             <marker date="1495360101695" expanded="true" signature="599:2097" ph="{&quot;autoprefixer&quot;: &quot;^6.4.0&quot;...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -663,6 +620,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1680">
           <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <marker date="1495361932610" expanded="true" signature="9:1515" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="17:1503" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="57:220" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="88:130" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="167:209" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="265:1494" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="290:1406" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="329:635" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="409:620" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="449:603" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="687:1004" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="767:989" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="807:972" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="1056:1393" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="1139:1378" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="1179:1361" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="1525:1829" ph="..." />
+            <marker date="1495361932610" expanded="true" signature="1577:1820" ph="{...}" />
+            <marker date="1495361932610" expanded="true" signature="1591:1718" ph="{...}" />
+            <marker date="1495361932610" expanded="true" signature="1606:1712" ph="{...}" />
+            <marker date="1495361932610" expanded="true" signature="1629:1704" ph="{&quot;name&quot;: ''...}" />
+            <marker date="1495361932610" expanded="true" signature="1734:1816" ph="{...}" />
+            <marker date="1495361932610" expanded="true" signature="1752:1810" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
           <folding />
         </state>
       </provider>
