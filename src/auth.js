@@ -2,10 +2,10 @@ import Router from './router'
 import { Toast, LocalStorage, Loading } from 'quasar'
 import axios from 'axios'
 
-const API_URL = 'http://quasar-back.dev/api/v1/'
-const LOGIN_URL = API_URL + 'authenticate'
-const SIGNUP_URL = API_URL + 'register'
-const USER_URL = API_URL + 'authenticate/user'
+const LOGIN_URL = 'authenticate'
+const SIGNUP_URL = 'register'
+const USER_URL = 'authenticate/user'
+const REFRESH_TOKEN = 'refresh-token'
 
 export default {
 
@@ -71,7 +71,7 @@ export default {
   refreshToken () {
     var that = this
 
-    axios.post(API_URL + 'refresh-token').then(function (response) {
+    axios.post(REFRESH_TOKEN).then(function (response) {
       // Store refreshed token
       axios.defaults.headers.common['Authorization'] = 'Bearer: ' + response.data.token
       LocalStorage.set('id_token', response.data.token)
