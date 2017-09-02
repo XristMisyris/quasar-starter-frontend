@@ -10,7 +10,6 @@ Clone the repository and install the dependencies:
 Then start a development server:  
 `quasar dev`
 
-![Main Page Overview](http://i.imgur.com/2zwDXvM.png)
-![Login](http://i.imgur.com/HG9m9MD.png)
-![Register](http://i.imgur.com/MLexBEN.png)
-![Menu Overview](http://i.imgur.com/UMjDOjI.png)
+![Index](https://i.imgur.com/WXpdy7O.png)
+![Login](https://i.imgur.com/pkUAYQM.png)
+![Main](https://i.imgur.com/k16U1EW.png)

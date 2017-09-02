@@ -2,7 +2,7 @@
   <div>
     <div class="layout-view">
       <div class="layout-padding">
-        <q-list>
+        <q-list striped-odd sparse no-border>
           <q-item v-for="joke in jokes.data" :key="joke.id">
             <q-item-main>
               <q-item-tile label>{{ joke.joke }}</q-item-tile>

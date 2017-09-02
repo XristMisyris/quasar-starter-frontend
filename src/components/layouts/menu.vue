@@ -11,6 +11,7 @@
 
     <!-- Left Side Panel -->
     <div slot="left">
+      <q-list-header>Menu</q-list-header>
       <q-list no-border link inset-separator>
         <q-side-link item to="/jokes">
           <q-item-side icon="list" />
@@ -40,7 +41,7 @@
 <style></style>
 
 <script>
-  import { GoBack, QLayout, QToolbar, QBtn, QIcon, QToolbarTitle, QList, QSideLink, QItemSide, QItemMain, QItem, QItemTile } from 'quasar'
+  import { GoBack, QLayout, QToolbar, QBtn, QIcon, QToolbarTitle, QList, QSideLink, QItemSide, QItemMain, QItem, QItemTile, QListHeader } from 'quasar'
   import Auth from '../../auth'
 
   export default{
@@ -66,7 +67,7 @@
       }
     },
 
-    components: { QLayout, QToolbar, QBtn, QIcon, QToolbarTitle, QList, QSideLink, QItemSide, QItemMain, QItem, QItemTile },
+    components: { QLayout, QToolbar, QBtn, QIcon, QToolbarTitle, QList, QSideLink, QItemSide, QItemMain, QItem, QItemTile, QListHeader },
 
     directives: { GoBack }
   }
