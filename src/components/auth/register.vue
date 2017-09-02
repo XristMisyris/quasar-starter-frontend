@@ -1,51 +1,30 @@
 <template>
   <div>
-    <div slot="header" class="toolbar">
-      <button v-go-back="'/'">
-        <i>arrow_back</i>
-      </button>
-      <q-toolbar-title :padding="1">
+    <q-toolbar>
+      <q-btn flat v-go-back=" '/welcome' ">
+        <q-icon name="arrow_back" />
+      </q-btn>
+      <q-toolbar-title>
         Register
       </q-toolbar-title>
-    </div>
+    </q-toolbar>
     <div class="layout-view layout-padding">
-      <div class="list">
-        <div class="item three-lines">
-          <i class="item-primary">face</i>
-          <div class="item-content">
-            <div class="stacked-label">
-              <input v-model="credentials.name" required placeholder="Your name" class="full-width">
-              <label>Name</label>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="item three-lines">
-          <i class="item-primary">mail</i>
-          <div class="item-content">
-            <div class="stacked-label">
-              <input v-model="credentials.email" required placeholder="Your email address" class="full-width">
-              <label>Email</label>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="item three-lines">
-          <i class="item-primary">vpn_key</i>
-          <div class="item-content">
-            <div class="stacked-label">
-              <input v-model="credentials.password" type="password" required placeholder="Your password" class="full-width">
-              <label>Password</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="primary full-width" @click="submit()">Register</button>
+      <q-field icon="face">
+        <q-input v-model="credentials.name" placeholder="Your name" class="full-width" />
+      </q-field>
+      <q-field icon="mail">
+        <q-input v-model="credentials.email" placeholder="Your email address" class="full-width" />
+      </q-field>
+      <q-field icon="vpn_key">
+        <q-input v-model="credentials.password" type="password" placeholder="Your password" class="full-width" />
+      </q-field>
+      <q-btn color="primary" class="full-width" @click="submit()">Register</q-btn>
     </div>
   </div>
 </template>
 
 <script>
+  import { GoBack, QBtn, QToolbar, QIcon, QToolbarTitle, QField, QInput } from 'quasar'
   import auth from '../../auth'
 
   export default {
@@ -63,6 +42,10 @@
       submit () {
         auth.signup(this.credentials, 'profile')
       }
-    }
+    },
+
+    components: { QBtn, QToolbar, QIcon, QToolbarTitle, QField, QInput },
+
+    directives: { GoBack }
   }
 </script>

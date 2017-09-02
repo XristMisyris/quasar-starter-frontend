@@ -26,7 +26,7 @@ export default {
           setTimeout(() => Router.replace(redirect), 700)
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         Toast.create.negative(error.response.data.message)
       })
   },
@@ -44,7 +44,7 @@ export default {
           setTimeout(() => Router.replace(redirect), 700)
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         Toast.create.negative(error.response.data.message)
       })
   },
@@ -52,7 +52,8 @@ export default {
   logout () {
     LocalStorage.clear()
     this.user.authenticated = false
-    Router.replace('/')
+    Router.replace('/welcome')
+    Toast.create.positive('You\'ve been logged out successfully.')
   },
 
   checkAuth () {
@@ -71,29 +72,31 @@ export default {
   refreshToken () {
     var that = this
 
-    axios.post(REFRESH_TOKEN).then(function (response) {
-      // Store refreshed token
-      axios.defaults.headers.common['Authorization'] = 'Bearer: ' + response.data.token
-      LocalStorage.set('id_token', response.data.token)
-      Toast.create.positive('Successful login!!')
-      that.getAuthUser()
-    }, function () {
-      Toast.create.negative('Something went wrong with your login!!')
-      that.logout()
-    })
+    axios.post(REFRESH_TOKEN)
+      .then((response) => {
+        // Store refreshed token
+        axios.defaults.headers.common['Authorization'] = 'Bearer: ' + response.data.token
+        LocalStorage.set('id_token', response.data.token)
+        Toast.create.positive('You have successfully logged in.')
+        that.getAuthUser()
+      }, () => {
+        Toast.create.negative('Something went wrong with your login!!')
+        that.logout()
+      })
   },
 
   getAuthUser () {
-    axios.get(USER_URL).then((response) => {
-      LocalStorage.set('user', response.data)
-    }, () => {
-      Toast.create.negative('Something went wrong!')
-    })
+    axios.get(USER_URL)
+      .then((response) => {
+        LocalStorage.set('user', response.data)
+      }, () => {
+        Toast.create.negative('Something went wrong!')
+      })
   },
 
   showLoading () {
     Loading.show({
-      message: 'Αποσυνδεθήκατε για λόγους ασφαλίας.\n Επανασύνδεση....'
+      message: 'You got disconnected for security reasons.\n Reconnecting....'
     })
     setTimeout(() => {
       Loading.hide()

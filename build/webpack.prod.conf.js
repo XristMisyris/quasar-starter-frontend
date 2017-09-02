@@ -38,7 +38,7 @@ module.exports = merge(baseWebpackConfig, {
       filename: '[name].[contenthash].css'
     }),
     new HtmlWebpackPlugin({
-      filename: config.build.index,
+      filename: path.resolve(__dirname, '../dist/index.html'),
       template: 'src/index.html',
       inject: true,
       minify: {
@@ -59,9 +59,12 @@ module.exports = merge(baseWebpackConfig, {
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
+          (
+            module.resource.indexOf('quasar') > -1 ||
+            module.resource.indexOf(
+              path.join(__dirname, '../node_modules')
+            ) === 0
+          )
         )
       }
     }),

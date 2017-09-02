@@ -7,15 +7,15 @@
       <p>Quasar App with Laravel Backend API</p>
     </div>
     <div class="row no-gutter">
-      <button class="primary full-width" @click="goTo('login')">
+      <q-btn color="primary" class="full-width" @click="goTo('login')">
         Login
-      </button>
+      </q-btn>
     </div>
     <br>
     <div class="row no-gutter">
-      <button class="primary full-width" @click="goTo('register')">
+      <q-btn color="primary" class="full-width" @click="goTo('register')">
         Register
-      </button>
+      </q-btn>
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@
   .splash {
     background url(../../statics/quasar-logo.png) no-repeat center center
     margin 0 auto
-    height 300px
+    height 150px
     width 300px
   }
 
@@ -64,6 +64,7 @@
 </style>
 
 <script>
+  import { QBtn } from 'quasar'
   import router from '../../router'
 
   export default {
@@ -71,6 +72,8 @@
       goTo (link) {
         router.push(link)
       }
-    }
+    },
+
+    components: { QBtn }
   }
 </script>

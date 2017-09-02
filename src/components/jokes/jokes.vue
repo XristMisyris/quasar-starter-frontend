@@ -1,32 +1,21 @@
 <template>
-  <q-layout>
-    <div slot="header" class="toolbar">
-      <button @click="$refs.menu.$refs.leftDrawer.open()">
-        <i>menu</i>
-      </button>
-      <q-toolbar-title :padding="1">
-        Jokes
-      </q-toolbar-title>
-    </div>
-
-    <q-menu ref="menu"></q-menu>
-
+  <div>
     <div class="layout-view">
       <div class="layout-padding">
-        <div class="list striped multiple-lines">
-          <div class="item" v-for="joke in jokes.data">
-            <div class="item-content">
-              <div>{{ joke.joke }}</div>
-            </div>
-          </div>
-        </div>
+        <q-list>
+          <q-item v-for="joke in jokes.data" :key="joke.id">
+            <q-item-main>
+              <q-item-tile label>{{ joke.joke }}</q-item-tile>
+            </q-item-main>
+          </q-item>
+        </q-list>
       </div>
     </div>
-  </q-layout>
+  </div>
 </template>
 
 <script>
-  import { Toast } from 'quasar'
+  import { Toast, QList, QItem, QItemMain, QItemTile } from 'quasar'
   import axios from 'axios'
   import menu from '../layouts/menu'
 
@@ -43,16 +32,15 @@
 
     methods: {
       fetchJokes () {
-        axios.get('jokes').then((response) => {
-          this.jokes = response.data
-        }, () => {
-          Toast.create.negative('Something went wrong!')
-        })
+        axios.get('jokes')
+          .then((response) => {
+            this.jokes = response.data
+          }, () => {
+            Toast.create.negative('Something went wrong!')
+          })
       }
     },
 
-    components: {
-      'q-menu': menu
-    }
+    components: { 'q-menu': menu, QList, QItem, QItemMain, QItemTile }
   }
 </script>

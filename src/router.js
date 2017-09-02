@@ -6,7 +6,7 @@ import { LocalStorage } from 'quasar'
 Vue.use(VueRouter)
 
 function load (component) {
-  return () => System.import(`components/${component}.vue`)
+  return () => import(`@/${component}.vue`)
 }
 
 export default new VueRouter({
@@ -23,19 +23,27 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/', component: load('index/index'), beforeEnter: checkAuth }, // Default
-    { path: '/login', component: load('auth/login') }, // Login
-    { path: '/register', component: load('auth/register') }, // Register
-    { path: '/profile', component: load('profile/profile'), beforeEnter: checkAuth }, // Profile
-    { path: '/jokes', component: load('jokes/jokes'), beforeEnter: checkAuth } // Profile
+    { path: '/welcome', component: load('welcome/welcome'), beforeEnter: checkAuth }, // Default
+    { path: '/login', component: load('auth/login') },
+    { path: '/register', component: load('auth/register') },
+    {
+      path: '/',
+      component: load('layouts/menu'),
+      beforeEnter: checkAuth,
+      children: [
+        { path: 'profile', component: load('profile/profile'), meta: { title: 'Profile' } },
+        { path: 'jokes', component: load('jokes/jokes'), meta: { title: 'Jokes' } }
+      ]
+    },
+    { path: '*', component: load('error404') } // Not found
   ]
 })
 
 function checkAuth (to, from, next) {
-  if (to.path === '/' && auth.user.authenticated) {
+  if (to.path === '/welcome' && auth.user.authenticated) {
     next('/profile')
   }
-  else if (!LocalStorage.get.item('id_token') && to.path !== '/') {
+  else if (!LocalStorage.get.item('id_token') && to.path !== '/welcome') {
     console.log('not logged')
     next('/login')
   }

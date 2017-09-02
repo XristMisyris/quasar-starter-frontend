@@ -1,34 +1,72 @@
 <template>
-  <div class="full-height full-width text-white bg-primary column items-center justify-center">
-    <h1>Quasar Framework</h1>
-    <h5>
-      Oops. Nothing to see here...
-    </h5>
-    <p>
-      <button v-if="canGoBack" class="secondary push" @click="goBack">
-        <i class="on-left">keyboard_arrow_left</i>
-        Go back
-      </button>
-      <span v-if="canGoBack" style="margin: 0 10px;">or</span>
-      <button class="secondary push" v-link="'/'">
-        Go home
-        <i class="on-right">home</i>
-      </button>
-    </p>
+  <div class="error-page window-height window-width bg-light column items-center no-wrap">
+    <div class="error-code bg-primary flex items-center justify-center">
+      404
+    </div>
+    <div>
+      <div class="error-card shadow-4 bg-white column items-center justify-center no-wrap">
+        <q-icon name="error_outline" color="grey-5" />
+        <p class="caption text-center">Oops. Nothing here...</p>
+        <p class="text-center group">
+          <q-btn
+              v-if="canGoBack"
+              color="primary"
+              push
+              @click="goBack"
+              icon="keyboard_arrow_left"
+          >
+            Go back
+          </q-btn>
+          <q-btn
+              color="primary"
+              push
+              @click="$router.replace('/')"
+              icon-right="home"
+          >
+            Go home
+          </q-btn>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      canGoBack: window.history.length > 1
-    }
-  },
-  methods: {
-    goBack () {
-      window.history.go(-1)
+  import { QBtn, QIcon } from 'quasar'
+
+  export default {
+    components: {
+      QBtn,
+      QIcon
+    },
+    data () {
+      return {
+        canGoBack: window.history.length > 1
+      }
+    },
+    methods: {
+      goBack () {
+        window.history.go(-1)
+      }
     }
   }
-}
 </script>
+
+<style lang="stylus">
+  .error-page
+    .error-code
+      height 50vh
+      width 100%
+      padding-top 15vh
+      font-size 30vmax
+      color rgba(255, 255, 255, .2)
+      overflow hidden
+  .error-card
+    border-radius 2px
+    margin-top -50px
+    width 80vw
+    max-width 600px
+    padding 25px
+    > i
+      font-size 5rem
+</style>

@@ -6,37 +6,50 @@
 require(`quasar/dist/quasar.${__THEME}.css`)
 // ==============================
 
+// Uncomment the following lines if you need IE11/Edge support
+// require(`quasar/dist/quasar.ie`)
+// require(`quasar/dist/quasar.ie.${__THEME}.css`)
+
 import Vue from 'vue'
-import Quasar from 'quasar'
+import Quasar, { Loading } from 'quasar'
 import router from './router'
 import auth from 'auth'
 import axios from 'axios'
 
+// Icons
+import 'quasar-extras/material-icons'
+import 'quasar-extras/ionicons'
+import 'quasar-extras/fontawesome'
+
+if (__THEME === 'mat') {
+  require('quasar-extras/roboto-font')
+}
+
 Vue.use(Quasar) // Install Quasar Framework
 
-axios.defaults.baseURL = 'http://quasar-back.dev/api/v1'
-
+axios.defaults.baseURL = 'http://quasar-starter-backend.gr/api/v1'
 // Check if user is logged in or not + refresh token
 auth.checkAuth(this)
 
-// Loading indicator for ajax request + refresh token if token is expired
+// Loading indicator for ajax requests + refresh token if token is expired
 axios.interceptors.request.use(function (config) {
-  Quasar.Loading.show()
+  Loading.show()
   return config
 }, function (error) {
-  Quasar.Loading.hide()
+  Loading.hide()
   return Promise.reject(error)
 })
 
 axios.interceptors.response.use(function (response) {
-  Quasar.Loading.hide()
+  Loading.hide()
+  // Refresh Token if token is expired
   if (response.status === 401 && response.body.error === 'token_expired') {
     auth.refreshToken()
     auth.showLoading()
   }
   return response
 }, function (error) {
-  Quasar.Loading.hide()
+  Loading.hide()
   return Promise.reject(error)
 })
 

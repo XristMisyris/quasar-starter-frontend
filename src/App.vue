@@ -6,10 +6,12 @@
 </template>
 
 <script>
-  /*
-   * Root component
-   */
-  export default {}
+  import Router from './router'
+  export default {
+    mounted () {
+      Router.replace('/welcome')
+    }
+  }
 </script>
 
 <style></style>
