@@ -23,7 +23,7 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/welcome', component: load('welcome/welcome'), beforeEnter: checkAuth }, // Default
+    { path: '/', component: load('welcome/welcome'), beforeEnter: checkAuth }, // Default
     { path: '/login', component: load('auth/login') },
     { path: '/register', component: load('auth/register') },
     {
@@ -40,10 +40,10 @@ export default new VueRouter({
 })
 
 function checkAuth (to, from, next) {
-  if (to.path === '/welcome' && auth.user.authenticated) {
+  if (to.path === '/' && auth.user.authenticated) {
     next('/profile')
   }
-  else if (!LocalStorage.get.item('id_token') && to.path !== '/welcome') {
+  else if (!LocalStorage.get.item('id_token') && to.path !== '/') {
     console.log('not logged')
     next('/login')
   }

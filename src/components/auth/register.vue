@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-toolbar>
-      <q-btn flat v-go-back=" '/welcome' ">
+      <q-btn flat v-go-back=" '/' ">
         <q-icon name="arrow_back" />
       </q-btn>
       <q-toolbar-title>

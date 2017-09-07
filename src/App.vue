@@ -6,12 +6,6 @@
 </template>
 
 <script>
-  import Router from './router'
-  export default {
-    mounted () {
-      Router.replace('/welcome')
-    }
-  }
 </script>
 
 <style></style>
