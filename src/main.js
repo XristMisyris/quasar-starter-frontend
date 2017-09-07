@@ -27,7 +27,7 @@ if (__THEME === 'mat') {
 
 Vue.use(Quasar) // Install Quasar Framework
 
-axios.defaults.baseURL = 'http://localhost/api/v1'
+axios.defaults.baseURL = 'http://localhost:8080/api/v1'
 // Check if user is logged in or not + refresh token
 auth.checkAuth(this)
 
