@@ -52,7 +52,7 @@ export default {
   logout () {
     LocalStorage.clear()
     this.user.authenticated = false
-    Router.replace('/welcome')
+    Router.replace('/')
     Toast.create.positive('You\'ve been logged out successfully.')
   },
 
