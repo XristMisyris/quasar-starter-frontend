@@ -19,7 +19,7 @@ export default {
         LocalStorage.set('id_token', response.data.token)
 
         this.user.authenticated = true
-        axios.defaults.headers.common['Authorization'] = 'Bearer: ' + LocalStorage.get.item('id_token')
+        axios.defaults.headers.common['Authorization'] = 'Bearer : ' + LocalStorage.get.item('id_token')
         this.getAuthUser()
 
         if (redirect) {
@@ -37,7 +37,7 @@ export default {
         LocalStorage.set('id_token', response.data.token)
 
         this.user.authenticated = true
-        axios.defaults.headers.common['Authorization'] = 'Bearer: ' + LocalStorage.get.item('id_token')
+        axios.defaults.headers.common['Authorization'] = 'Bearer : ' + LocalStorage.get.item('id_token')
         this.getAuthUser()
 
         if (redirect) {
@@ -61,7 +61,7 @@ export default {
 
     if (jwt) {
       this.user.authenticated = true
-      axios.defaults.headers.common['Authorization'] = 'Bearer: ' + LocalStorage.get.item('id_token')
+      axios.defaults.headers.common['Authorization'] = 'Bearer : ' + LocalStorage.get.item('id_token')
       this.refreshToken()
     }
     else {
@@ -75,7 +75,7 @@ export default {
     axios.post(REFRESH_TOKEN)
       .then((response) => {
         // Store refreshed token
-        axios.defaults.headers.common['Authorization'] = 'Bearer: ' + response.data.token
+        axios.defaults.headers.common['Authorization'] = 'Bearer : ' + response.data.token
         LocalStorage.set('id_token', response.data.token)
         Toast.create.positive('You have successfully logged in.')
         that.getAuthUser()
